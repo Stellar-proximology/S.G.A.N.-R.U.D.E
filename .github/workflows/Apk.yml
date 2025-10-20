@@ -1,0 +1,25 @@
+name: Android App CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Automated Android Build
+        uses: amirisback/automated-build-android-app-with-github-action@2.2.5
+        with:
+          project_path: app
+          gradle_wrapper: true
+          build_type: Release
+          artifacts_path: app/build/outputs/apk/release/
